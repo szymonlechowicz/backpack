@@ -3,61 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GeneratorCS;
 
 namespace ConsoleApp1
 {
-    class Object: IComparable<Object>
+    public class Item : IComparable<Item>
     {
         public int weight;
         public int value;
         public float valueToWeight;
-        public Object(int obWeight, int obValue)
+        public Item(int obWeight, int obValue)
         {
             weight = obWeight;
             value = obValue;
             valueToWeight = value / (float)weight;
         }
-        public int CompareTo(Object other)
+        public int CompareTo(Item other)
         {
             return valueToWeight.CompareTo(other.valueToWeight);
         }
 
     }
-    class Program
+    public class Knapsack
     {
-        public static char[] Greedy(Object[] obj, int amount, int capacity)
+        public bool[] Greedy(Item[] obj, int amount, int capacity)
         {
             int i, j;
             int actualWeight = 0;
-            Object tmp;
-            char[] put = new char[amount];
+            bool[] put = new bool[amount];
 
             for (i = 0; i < amount; i++)
             {
-                put[i] = '0';
+                put[i] = false;
             }
 
-      // sorting
-      //for (i = 0; i < amount - 1; i++)
-      //{
-      //    for (j = 0; j < amount - 1; j++)
-      //    {
-      //        if (obj[j].valueToWeight < obj[j+1].valueToWeight)
-      //        {
-      //            tmp = obj[j];
-      //            obj[j] = obj[j + 1];
-      //            obj[j + 1] = tmp;
-
-      //        }
-      //    }
-      //}
             Array.Sort(obj);
             Array.Reverse(obj);
             for (i = 0; i < amount; i++)
             {
                 if (obj[i].weight + actualWeight <= capacity)
                 {
-                    put[i] = '1';
+                    put[i] = true;
                     actualWeight += obj[i].weight;
                 }
             }
@@ -66,31 +52,44 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             int i;
+            RandomNumberGenerator rnd = new RandomNumberGenerator(20);
 
-            Console.Write("Amount of subjects: ");
-            int n = int.Parse(Console.ReadLine());
-            Console.Write("Knapsack capacity: ");
-            int c = int.Parse(Console.ReadLine());
+
+            //Console.Write("Number of items: ");
+            //int n = int.Parse(Console.ReadLine());
+            //Console.Write("Knapsack capacity: ");
+            //int c = int.Parse(Console.ReadLine());
+
+            int n = rnd.nextInt(1, 10);
+            int c = rnd.nextInt(1, 15);
             
             int[] v = new int[n]; // values
             int[] w = new int[n]; // weights
-            char[] Knapsack = new char[n]; // 0, 1
-            Object[] objects = new Object[n];
+            bool[] knapsack = new bool[n]; // 0, 1
+            Item[] objects = new Item[n];
+            
+            //for (i = 0; i < n; ++i)
+            //{
+            //     Console.WriteLine("Put value of item " + i + ":");
+            //     int value = int.Parse(Console.ReadLine());
+            //     Console.WriteLine("Put weight of item " + i + ":");
+            //     int weight = int.Parse(Console.ReadLine());
+            //     objects[i] = new Item(weight, value);
+            //}
+
             for (i = 0; i < n; ++i)
             {
-                 Console.WriteLine("Put value of object " + i + ":");
-                 int value = int.Parse(Console.ReadLine());
-                 Console.WriteLine("Put weight of object " + i + ":");
-                 int weight = int.Parse(Console.ReadLine());
-                 objects[i] = new Object(weight, value);
+                int value = rnd.nextInt(1, 29);
+                int weight = rnd.nextInt(1, 29);
+                objects[i] = new Item(weight, value);
             }
-            
 
-            Knapsack = Greedy(objects, n, c);
-            Console.WriteLine("Objects in knapsack: (value and weight) \n");
+            var kp = new Knapsack();
+            knapsack = kp.Greedy(objects, n, c);
+            Console.WriteLine("Items in knapsack: (value and weight) \n");
             for (i = 0; i < n; i++)
             {
-                if (Knapsack[i] == '1')
+                if (knapsack[i] == true)
                 {
                     Console.WriteLine(objects[i].value + " " + objects[i].weight);
                 }
