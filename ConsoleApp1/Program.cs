@@ -52,22 +52,23 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             int i;
-            RandomNumberGenerator rnd = new RandomNumberGenerator(20);
-
+            RandomNumberGenerator rnd = new RandomNumberGenerator(1);
 
             //Console.Write("Number of items: ");
             //int n = int.Parse(Console.ReadLine());
             //Console.Write("Knapsack capacity: ");
             //int c = int.Parse(Console.ReadLine());
 
-            int n = rnd.nextInt(1, 10);
-            int c = rnd.nextInt(1, 15);
+            int n = rnd.nextInt(5, 29);
+            int c = rnd.nextInt(15, 49);
+
+            Console.WriteLine("Number: " + n + "\tCapacity: " + c);
             
             int[] v = new int[n]; // values
             int[] w = new int[n]; // weights
             bool[] knapsack = new bool[n]; // 0, 1
             Item[] objects = new Item[n];
-            
+
             //for (i = 0; i < n; ++i)
             //{
             //     Console.WriteLine("Put value of item " + i + ":");
@@ -77,21 +78,24 @@ namespace ConsoleApp1
             //     objects[i] = new Item(weight, value);
             //}
 
+            Console.WriteLine("\tvalues\tweight");
+
             for (i = 0; i < n; ++i)
             {
                 int value = rnd.nextInt(1, 29);
                 int weight = rnd.nextInt(1, 29);
                 objects[i] = new Item(weight, value);
+                Console.WriteLine("\t" + value + "\t" + weight);
             }
 
             var kp = new Knapsack();
             knapsack = kp.Greedy(objects, n, c);
-            Console.WriteLine("Items in knapsack: (value and weight) \n");
+            Console.Write("Items in knapsack:\n\tvalue\tweight\n");
             for (i = 0; i < n; i++)
             {
                 if (knapsack[i] == true)
                 {
-                    Console.WriteLine(objects[i].value + " " + objects[i].weight);
+                    Console.WriteLine("\t" + objects[i].value + "\t" + objects[i].weight);
                 }
             }
             Console.ReadLine();
