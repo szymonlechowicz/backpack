@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GeneratorCS;
 
+
 namespace ConsoleApp1
 {
     public class Item : IComparable<Item>
@@ -101,6 +102,21 @@ namespace ConsoleApp1
             Console.ReadLine();
            
         }
-        
+    public static bool[] Generate(int n, int c, ref Item[] objects) {
+      RandomNumberGenerator rnd = new RandomNumberGenerator(1);
+      int[] v = new int[n]; // values
+      int[] w = new int[n]; // weights
+      bool[] knapsack = new bool[n]; // 0, 1
+      objects = new Item[n];
+      for(int i = 0; i < n; ++i) {
+        int value = rnd.nextInt(1, 29);
+        int weight = rnd.nextInt(1, 29);
+        objects[i] = new Item(weight, value);
+      }
+
+      var kp = new Knapsack();
+      knapsack = kp.Greedy(objects, n, c);
+      return knapsack;
     }
+  }
 }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1Tests", "ConsoleApp1Tests\ConsoleApp1Tests.csproj", "{400ADC39-72EA-4E9A-A4A3-1246DAFAA36E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorCS", "GeneratorCS\GeneratorCS.csproj", "{F410D725-67CA-4E53-8B9E-E677448613DE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{45D5DB28-31F5-45F8-8D18-BFD37F76B89B}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{400ADC39-72EA-4E9A-A4A3-1246DAFAA36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{400ADC39-72EA-4E9A-A4A3-1246DAFAA36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{400ADC39-72EA-4E9A-A4A3-1246DAFAA36E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F410D725-67CA-4E53-8B9E-E677448613DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F410D725-67CA-4E53-8B9E-E677448613DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F410D725-67CA-4E53-8B9E-E677448613DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F410D725-67CA-4E53-8B9E-E677448613DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45D5DB28-31F5-45F8-8D18-BFD37F76B89B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45D5DB28-31F5-45F8-8D18-BFD37F76B89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45D5DB28-31F5-45F8-8D18-BFD37F76B89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
